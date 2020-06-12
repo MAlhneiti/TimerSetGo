@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        PB_countdown.max = 100
+
         //Setting the animated background
         val animDrawable = Main_root_layout.background as AnimationDrawable
 
@@ -41,6 +43,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }//BTN_settings
 
+        BTN_start.setOnClickListener {
+            PB_countdown.progress = 50
+        }//BTN_start
+
+        BTN_pause.setOnClickListener {
+            PB_countdown.progress = 75
+        }//BTN_pause
+
+        BTN_stop.setOnClickListener {
+            PB_countdown.progress = 0
+        }//BTN_stop
     }//onCreate
 
     override fun onResume() {
@@ -51,26 +64,12 @@ class MainActivity : AppCompatActivity() {
     }//onResume
 
     private fun getValuesFromPreferences() {
-        val sharedPref = this.getSharedPreferences(SharedPrefConfig.SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val preferencesMap = SharedPrefConfig.getTimerValues(this)
 
-        sharedSessionMin = sharedPref.getInt(SharedPrefConfig.PREF_SESSION_MINUTES, 25)
-        sharedSessionSec = sharedPref.getInt(SharedPrefConfig.PREF_SESSION_SECONDS, 0)
-
-        sharedBreakMin = sharedPref.getInt(SharedPrefConfig.PREF_BREAK_MINUTES, 10)
-        sharedBreakSec = sharedPref.getInt(SharedPrefConfig.PREF_BREAK_SECONDS, 0)
+        sharedSessionMin = preferencesMap[SharedPrefConfig.PREF_SESSION_MINUTES]!!
+        sharedSessionSec = preferencesMap[SharedPrefConfig.PREF_SESSION_SECONDS]!!
+        sharedBreakMin = preferencesMap[SharedPrefConfig.PREF_BREAK_MINUTES]!!
+        sharedBreakSec = preferencesMap[SharedPrefConfig.PREF_BREAK_SECONDS]!!
     }//getValuesFromPreferences
-
-//    private fun loadConfetti() {
-//        viewKonfetti.build()
-//            .addColors(Color.YELLOW, Color.WHITE, Color.MAGENTA)
-//            .setDirection(0.0, 359.0)
-//            .setSpeed(1f, 5f)
-//            .setFadeOutEnabled(true)
-//            .setTimeToLive(2000L)
-//            .addShapes(Shape.RECT, Shape.CIRCLE)
-//            .addSizes(Size(12))
-//            .setPosition(-50f, viewKonfetti.width + 50f, -50f, -50f)
-//            .streamFor(300, 5000L)
-//    }//loadConfetti
 
 }//MainActivity

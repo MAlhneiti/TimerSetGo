@@ -26,22 +26,7 @@ class SettingsActivity : AppCompatActivity() {
         animDrawable.setExitFadeDuration(5000)
         animDrawable.start()
 
-        //Setting min, max, and initial values of all NumberPickers
-        SessionTime_minutes.minValue = 1
-        SessionTime_minutes.maxValue = 60
-        SessionTime_minutes.value = 30
-
-        SessionTime_seconds.minValue = 0
-        SessionTime_seconds.maxValue = 60
-        SessionTime_seconds.value = 0
-
-        BreakTime_minutes.minValue = 1
-        BreakTime_minutes.maxValue = 60
-        BreakTime_minutes.value = 10
-
-        BreakTime_seconds.minValue = 0
-        BreakTime_seconds.maxValue = 60
-        BreakTime_seconds.value = 0
+        initNumberPickers()
 
         //Setting Save onClickListener
         BTN_save.setOnClickListener {
@@ -57,17 +42,34 @@ class SettingsActivity : AppCompatActivity() {
         }//BTN_clear
     }//onCreate
 
+    private fun initNumberPickers() {
+        //Setting min, max, and initial values of all NumberPickers
+        SessionTime_minutes.minValue = 1
+        SessionTime_minutes.maxValue = 60
+        SessionTime_minutes.value = 25
+
+        SessionTime_seconds.minValue = 0
+        SessionTime_seconds.maxValue = 60
+        SessionTime_seconds.value = 0
+
+        BreakTime_minutes.minValue = 1
+        BreakTime_minutes.maxValue = 60
+        BreakTime_minutes.value = 10
+
+        BreakTime_seconds.minValue = 0
+        BreakTime_seconds.maxValue = 60
+        BreakTime_seconds.value = 0
+    }//initNumberPickers
+
     private fun setValuesToPreferences() {
-        val prefEditor = this.getSharedPreferences(SharedPrefConfig.SHARED_PREF_NAME, Context.MODE_PRIVATE).edit()
+        val preferencesMap = mutableMapOf<String, Int>()
 
-        prefEditor.putInt(SharedPrefConfig.PREF_SESSION_MINUTES, SessionTime_minutes.value)
-        prefEditor.putInt(SharedPrefConfig.PREF_SESSION_SECONDS, SessionTime_seconds.value)
+        preferencesMap[SharedPrefConfig.PREF_SESSION_MINUTES] = SessionTime_minutes.value
+        preferencesMap[SharedPrefConfig.PREF_SESSION_SECONDS] = SessionTime_seconds.value
+        preferencesMap[SharedPrefConfig.PREF_BREAK_MINUTES] = BreakTime_minutes.value
+        preferencesMap[SharedPrefConfig.PREF_BREAK_SECONDS] = BreakTime_seconds.value
 
-        prefEditor.putInt(SharedPrefConfig.PREF_BREAK_MINUTES, BreakTime_minutes.value)
-        prefEditor.putInt(SharedPrefConfig.PREF_BREAK_SECONDS, BreakTime_seconds.value)
-
-        prefEditor.apply()
-        prefEditor.commit()
+        SharedPrefConfig.setTimerValues(this, preferencesMap)
 
         hasChangedValues = true
 
@@ -89,12 +91,9 @@ class SettingsActivity : AppCompatActivity() {
     }//goBackToMainActivity
 
     private fun clearSavedValuesInPreferences() {
-        val prefEditor = this.getSharedPreferences(SharedPrefConfig.SHARED_PREF_NAME, Context.MODE_PRIVATE).edit()
+        SharedPrefConfig.clearTimerValues(this)
 
-        prefEditor.clear()
-        prefEditor.apply()
-
-        SessionTime_minutes.value = 30
+        SessionTime_minutes.value = 25
         SessionTime_seconds.value = 0
         BreakTime_minutes.value = 10
         BreakTime_seconds.value = 0

@@ -83,12 +83,12 @@
         app:layout_constraintGuide_percent="0.6" />
 
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-        android:id="@+id/materialProgressBar"
+        android:id="@+id/PB_countdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="227dp"
         android:minHeight="227dp"
-        android:indeterminate="true"
+        style="@style/Widget.MaterialProgressBar.ProgressBar"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +103,7 @@
         android:textColor="@color/colorPrimaryLight"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/materialProgressBar"
+        app:layout_constraintBottom_toTopOf="@+id/PB_countdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -133,15 +133,33 @@
         app:layout_constraintEnd_toEndOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView3" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/BTN_start"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/accent_button"
-        android:text="Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialProgressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/PB_countdown"
+        app:srcCompat="@drawable/ic_play" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/BTN_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/BTN_start"
+        app:layout_constraintTop_toBottomOf="@+id/BTN_start"
+        app:srcCompat="@drawable/ic_pause" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/BTN_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintStart_toEndOf="@+id/BTN_start"
+        app:layout_constraintTop_toBottomOf="@+id/BTN_start"
+        app:srcCompat="@drawable/ic_stop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
