@@ -49,15 +49,15 @@ class SettingsActivity : AppCompatActivity() {
         SessionTime_minutes.value = 25
 
         SessionTime_seconds.minValue = 0
-        SessionTime_seconds.maxValue = 60
+        SessionTime_seconds.maxValue = 59
         SessionTime_seconds.value = 0
 
-        BreakTime_minutes.minValue = 1
+        BreakTime_minutes.minValue = 0
         BreakTime_minutes.maxValue = 60
         BreakTime_minutes.value = 10
 
         BreakTime_seconds.minValue = 0
-        BreakTime_seconds.maxValue = 60
+        BreakTime_seconds.maxValue = 59
         BreakTime_seconds.value = 0
     }//initNumberPickers
 

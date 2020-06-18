@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Timer Set Go</string>
+    <string name="work_hard">Work hard!</string>
+    <string name="break_time">Break time!</string>
+    <string name="finished_sessions">You have finished your sessions!</string>
+    <string name="stopped_timer">Stopped timer.</string>
+    <string name="please_enter_valid_number">Please enter a valid number of sessions.</string>
+    <string name="invalid_number">Invalid number of sessions!</string>
+    <string name="please_stop_or_pause">Please stop or pause the timer first.</string>
+    <string name="timer_is_running">Timer is running!</string>
+    <string name="is_finished">Good job! You have finished all your sessions!</string>
+    <string name="how_many_sessions_do_you_want_to_do_today">How many sessions do you want to do today?</string>
+    <string name="session_number">Session number:</string>
+    <string name="set">Set</string>
+    <string name="stop_alarm">Stop Alarm</string>
 </resources>
